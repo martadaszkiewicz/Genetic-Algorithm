@@ -1,8 +1,10 @@
-# app.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from Genetic_Algorithm import Genetic_Algorithm
 from sequence_transformation import sequence_transformation
+from CrossoverOperator import CrossoverOperator
+
+
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000"])
 
@@ -15,6 +17,7 @@ def run_genetic_algorithm():
     n = data['n']
     p_m = data['p_m']
 
+
     cost, sequence, time_to_process = Genetic_Algorithm(x, y, P, n, p_m)
 
     # converting numny arrays to Python lists using tolist() (it was necessary)
@@ -24,7 +27,7 @@ def run_genetic_algorithm():
     x_results = sequence_transformation(sequence, x)
     y_results = sequence_transformation(sequence, y)
 
-    
+        
     response = {
         'cost': cost,
         'sequence': sequence,
